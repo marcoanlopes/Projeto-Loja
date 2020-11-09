@@ -2,8 +2,6 @@ package br.edu.up.dominio;
 
 import java.util.Scanner;
 
-//import com.sun.tools.sjavac.server.SysInfo;
-
 public class Menu {
 
 	public static void mainMenu() {
@@ -35,16 +33,12 @@ public class Menu {
 			case 0: {
 				System.out.println("Saindo...");
 				escolha = 0;
-//				leitor.close();
 				break;
 			}
 			default:
 				System.out.println("Esse não é um número válido, por favor tente novamente.\n");
-//			escolha = leitor.nextInt();
 				break;
 			}
-
-//		
 
 		}
 
@@ -88,7 +82,7 @@ public class Menu {
 				break;
 			}
 			case 0: {
-//				leitor.close();
+
 				break;
 			}
 
@@ -98,7 +92,7 @@ public class Menu {
 			}
 
 		}
-//		leitor.close();
+
 	}
 
 	public static void productsMenu() {
@@ -142,9 +136,9 @@ public class Menu {
 				System.out.println("opção de estoque selecionada");
 				break;
 			}
-			
+
 			case 0: {
-//				leitor.close();
+
 				break;
 			}
 
@@ -178,7 +172,6 @@ public class Menu {
 				break;
 			}
 			case 0: {
-//				leitor.close();
 				break;
 			}
 

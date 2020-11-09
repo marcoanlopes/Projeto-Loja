@@ -1,6 +1,5 @@
 package br.edu.up.sistema;
 
-//import java.util.Scanner;
 
 import br.edu.up.dominio.Menu;
 
