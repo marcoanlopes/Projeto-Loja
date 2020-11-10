@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 import br.edu.up.dominio.Product;
 
+
+//criar um create Customer;
+
 public class Create {
 
 	public void createProduct(List<Product> productList) {

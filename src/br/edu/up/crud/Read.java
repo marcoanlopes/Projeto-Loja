@@ -4,12 +4,7 @@ import java.util.List;
 
 import br.edu.up.dominio.Product;
 
-//private int sku; // PRIMARY KEY
-//private String name;
-//private String description;
-//private double buyPrice;
-//private double sellPrice;
-//private int quantity;
+//Criar um readCustomer;
 
 public class Read {
 

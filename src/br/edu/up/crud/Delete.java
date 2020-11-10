@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import br.edu.up.dominio.Product;
 
+//Criar um delete Product;
+
 public class Delete {
 
 	public void deleteProduct(List<Product> productList) {
