@@ -8,6 +8,5 @@ public class Record {
 	public double totalSale;
 	public List<Product> boughtList = new ArrayList<>();
 	public List<Product> soldList = new ArrayList<>();
-	
-	
+		
 }

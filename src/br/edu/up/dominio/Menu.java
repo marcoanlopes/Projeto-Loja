@@ -1,10 +1,27 @@
 package br.edu.up.dominio;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Menu {
+//import br.edu.up.dominio.Product;
 
+import br.edu.up.crud.Create;
+import br.edu.up.crud.Delete;
+import br.edu.up.crud.Read;
+import br.edu.up.crud.Update;
+
+public class Menu {
+	static Create criar = new Create();
+	static Read listar = new Read();
+	static Update atualizar = new Update();
+	static Delete deletar = new Delete();
+	static List<Product> productList = new ArrayList<>();
+
+//	public 
+//	public List <Customer> customerList = new ArrayList<>();
 	public static void mainMenu() {
+		
 		Scanner leitor = new Scanner(System.in);
 		int escolha = -1;
 		System.out.println("Seja bem vindo ao menu de sua loja!");
@@ -23,7 +40,7 @@ public class Menu {
 				break;
 			}
 			case 2: {
-				productsMenu();
+				productsMenu(productList);
 				break;
 			}
 			case 3: {
@@ -95,7 +112,9 @@ public class Menu {
 
 	}
 
-	public static void productsMenu() {
+	public static void productsMenu(List <Product> productList) {
+//		List <Product> productList = new ArrayList<>();
+		
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		System.out.println("Menu Produtos");
 		Scanner leitor = new Scanner(System.in);
@@ -112,20 +131,20 @@ public class Menu {
 			escolha = leitor.nextInt();
 
 			switch (escolha) {
-			case 1: {
-				System.out.println("Opção de criar selecionada");
+			case 1: {		
+				criar.createProduct(productList);
 				break;
 			}
 			case 2: {
-				System.out.println("Opção de listar selecionada");
+				listar.readProduct(productList);
 				break;
 			}
 			case 3: {
-				System.out.println("Opção de alterar selecionada");
+				atualizar.updateProduct(productList);
 				break;
 			}
 			case 4: {
-				System.out.println("Opção de deletar selecionada");
+				deletar.deleteProduct(productList);
 				break;
 			}
 			case 5: {
@@ -174,7 +193,6 @@ public class Menu {
 			case 0: {
 				break;
 			}
-
 			default:
 				System.out.println("Esse não é um número válido, por favor tente novamente.\n");
 				break;
