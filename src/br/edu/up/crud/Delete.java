@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import br.edu.up.dominio.Product;
 
-//Criar um delete Product;
+//Criar um delete customer;
 
 public class Delete {
 
@@ -16,8 +16,18 @@ public class Delete {
 
 		for (int i = productList.size() - 1; i >= 0; i--) {
 			if (leitorSKU == productList.get(i).getSku()) {
-				System.out.println("Produto: " + productList.get(i).getName() + "\nRemovido com sucesso!");
-				productList.remove(i);
+				System.out.println("Produto: " + productList.get(i).getName() + " encontrado deseja removê-lo? (s/n)");
+				leitor.nextLine();
+				String decisao = leitor.nextLine();
+				if (decisao.equals("s") || decisao.equals("S")) {
+					System.out.println("Produto: " + productList.get(i).getName() + "\nRemovido com sucesso!");			
+					productList.remove(i);
+				}
+				else {
+					System.out.println("Voltando ao menu anterior..");
+					break;
+				}
+				
 			}
 
 		}
