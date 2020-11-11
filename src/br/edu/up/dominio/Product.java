@@ -12,6 +12,18 @@ public class Product {
 	private double buyPrice;
 	private double sellPrice;
 	private int quantity;
+	
+	public Product() {
+		
+	}
+	public Product(int sku, String name, String description, double buyPrice, double sellPrice, int quantity) {
+		this.sku = sku;
+		this.name = name;
+		this.description = description;
+		this.buyPrice = buyPrice;
+		this.sellPrice = sellPrice;
+		this.quantity = quantity;
+	}
 	public int getSku() {
 		return sku;
 	}
@@ -48,7 +60,5 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Product() {
-		
-	}
+
 }

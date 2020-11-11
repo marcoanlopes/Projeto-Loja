@@ -10,6 +10,9 @@ public class Customer {
 	private String email;
 	private String note;
 	
+	public Customer() {
+	}
+	
 	public String getCpf() {
 		return cpf;
 	}
@@ -52,7 +55,6 @@ public class Customer {
 	public void setNote(String note) {
 		this.note = note;
 	}
-	public Customer() {
-	}
+	
 	
 }
