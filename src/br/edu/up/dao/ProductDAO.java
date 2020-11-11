@@ -2,6 +2,7 @@ package br.edu.up.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,25 +10,96 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.up.dominio.Product;
+import jdk.jfr.Description;
 
 public class ProductDAO implements DAO<Product> {
 
 	@Override
 	public Product create(Product entity) {
-		// TODO Auto-generated method stub
+		// Arrumar o try/catch
+		Connection con = getConnection();
+		
+		String sql = "insert into Products (name, description, PurchasePrice, sellPrice, quantity) values (?, ?, ?, ?, ?);";
+		try {
+			PreparedStatement executor = con.prepareStatement(sql);
+			executor.setString(1, entity.getName());
+			executor.setString(2, entity.getDescription());
+			executor.setDouble(3, entity.getPurchasePrice());
+			executor.setDouble(4, entity.getSellingPrice());
+			executor.setInt(5, entity.getQuantity());			
+
+			executor.executeUpdate();
+
+			executor.close();
+			con.close();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
 	@Override
 	public Product update(Product entity) {
-		// TODO Auto-generated method stub
+		// Terminar o try/catch
+		Connection con = getConnection();
+		
+		String sql = "update Products set name = ?, description = ?, PurchasePrice = ?, sellPrice = ?, quantity = ? where sku = ?;";
+		try {
+			PreparedStatement executor = con.prepareStatement(sql);
+			executor.setString(1, entity.getName());
+			executor.setString(2, entity.getDescription());
+			executor.setDouble(3, entity.getPurchasePrice());
+			executor.setDouble(4, entity.getSellingPrice());
+			executor.setInt(5, entity.getQuantity());
+			executor.setInt(6, entity.getSku());
+			
+			executor.executeUpdate();
+			
+			executor.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public Product getById(Integer id) {
 		// TODO Auto-generated method stub
-		return null;
+		Connection con = getConnection();
+		
+		String sql = "select * from Products where sku = ?;";
+
+		Product product = null;
+	
+		try {
+			PreparedStatement executor = con.prepareStatement(sql);
+			executor.setInt(1, id);
+			ResultSet result = executor.executeQuery();
+			while(result.next()) {
+				int sku = result.getInt("sku");
+				String name = result.getString("name");
+				String description = result.getNString("description");
+				double PurchasePrice = result.getDouble("PurchasePrice");
+				double sellPrice = result.getDouble("sellPrice");
+				int quantity = result.getInt("quantity");
+				product = new Product(sku, name, description, PurchasePrice, sellPrice, quantity);
+				
+				break;
+			}
+			
+			executor.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return product;
 	}
 
 	@Override
@@ -45,11 +117,11 @@ public class ProductDAO implements DAO<Product> {
 				int sku = result.getInt("sku");
 				String name = result.getString("name");
 				String description = result.getNString("description");
-				double buyPrice = result.getDouble("buyPrice");
+				double PurchasePrice = result.getDouble("PurchasePrice");
 				double sellPrice = result.getDouble("sellPrice");
 				int quantity = result.getInt("quantity");
 				
-				Product product = new Product(sku, name, description, buyPrice, sellPrice, quantity);
+				Product product = new Product(sku, name, description, PurchasePrice, sellPrice, quantity);
 				
 				productList.add(product);
 			}
@@ -68,6 +140,23 @@ public class ProductDAO implements DAO<Product> {
 	@Override
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
+		Connection con = getConnection();
+		
+		String sql = "delete from Products where sku = ?;";
+		try {
+			PreparedStatement executor = con.prepareStatement(sql);
+			
+			executor.setInt(1, id);
+			
+			executor.executeUpdate();
+			
+			executor.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 
