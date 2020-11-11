@@ -3,6 +3,7 @@ package br.edu.up.crud;
 import java.util.List;
 import java.util.Scanner;
 
+import br.edu.up.dao.ProductDAO;
 import br.edu.up.dominio.Product;
 
 
@@ -10,26 +11,26 @@ import br.edu.up.dominio.Product;
 
 public class Create {
 
-	public void createProduct(List<Product> productList) {
+	public void createProduct() {
 		
-		Product produto = new Product();
-		Scanner leitor = new Scanner(System.in);
+		Product product = new Product();
+		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Digite o SKU do produto:");
-		produto.setSku(leitor.nextInt());
 		System.out.println("Digite o nome do produto:");
-		leitor.nextLine();
-		produto.setName(leitor.nextLine());
+		scanner.nextLine();
+		product.setName(scanner.nextLine());
 		System.out.println("Digite a descrição do produto");
-		produto.setDescription(leitor.nextLine());
+		product.setDescription(scanner.nextLine());
 		System.out.println("Digite o preco pago pelo produto");
-		produto.setBuyPrice(leitor.nextDouble());
+		product.setPurchasePrice(scanner.nextDouble());
 		System.out.println("Digite o preco de venda");
-		produto.setSellPrice(leitor.nextDouble());
+		product.setSellingPrice(scanner.nextDouble());
 		System.out.println("Digite a quantidade comprada");
-		produto.setQuantity(leitor.nextInt());
+		product.setQuantity(scanner.nextInt());
 		
-		productList.add(produto);
+		ProductDAO productDAO = new ProductDAO();
+		
+		productDAO.create(product);
 		
 	}
 	

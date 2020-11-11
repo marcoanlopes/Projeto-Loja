@@ -132,15 +132,15 @@ public class Menu {
 
 			switch (escolha) {
 			case 1: {		
-				criar.createProduct(productList);
+				criar.createProduct();
 				break;
 			}
 			case 2: {
-				listar.readProduct(productList);
+				listar.readProduct();
 				break;
 			}
 			case 3: {
-				atualizar.updateProduct(productList);
+				atualizar.updateProduct();
 				break;
 			}
 			case 4: {
