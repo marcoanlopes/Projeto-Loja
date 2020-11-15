@@ -16,11 +16,11 @@ public class Menu {
 	static Read listar = new Read();
 	static Update atualizar = new Update();
 	static Delete deletar = new Delete();
-	static List<Product> productList = new ArrayList<>();
+//	static List<Product> productList = new ArrayList<>();
 
 //	public 
 //	public List <Customer> customerList = new ArrayList<>();
-	public static void mainMenu() {
+	public static void mainMenu(List <Product> productList) {
 		
 		Scanner leitor = new Scanner(System.in);
 		int escolha = -1;
@@ -132,15 +132,15 @@ public class Menu {
 
 			switch (escolha) {
 			case 1: {		
-				criar.createProduct();
+				criar.createProduct(productList);
 				break;
 			}
 			case 2: {
-				listar.readProduct();
+				listar.readProduct(productList);
 				break;
 			}
 			case 3: {
-				atualizar.updateProduct();
+				atualizar.updateProduct(productList);
 				break;
 			}
 			case 4: {

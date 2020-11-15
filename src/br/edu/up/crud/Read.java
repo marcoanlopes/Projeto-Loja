@@ -9,13 +9,14 @@ import br.edu.up.dominio.Product;
 
 public class Read {
 
-	public void readProduct() {
-		ProductDAO productDAO = new ProductDAO();
-		List<Product> productList = productDAO.getAll();
+	public void readProduct(List<Product> productList) {
+//		ProductDAO productDAO = new ProductDAO();
+//		List<Product> productList = product.list();
 		for (Product product : productList) {
-			System.out.println("SKU: " + product.getSku() + "\tNome: " + product.getName() + "\tPreço de compra: "
-					+ product.getPurchasePrice() + "\tPreço de venda: " + product.getSellingPrice() + "\tDescrição: "
-					+ product.getDescription() + "\tQuantidade: " + product.getQuantity());
+			System.out.println(product);
+//			System.out.println("SKU: " + product.getSku() + "\tNome: " + product.getName() + "\tPreço de compra: "
+//					+ product.getPurchasePrice() + "\tPreço de venda: " + product.getSellingPrice() + "\tDescrição: "
+//					+ product.getDescription() + "\tQuantidade: " + product.getQuantity());
 		}
 	}
 

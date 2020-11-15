@@ -20,7 +20,7 @@ public class Delete {
 			
 			System.out.println("Digite o SKU: ");
 			skuScanner = scanner.nextInt();
-			deleteProduct = productDAO.getById(skuScanner);
+			deleteProduct = productDAO.findById(skuScanner);
 			if(deleteProduct == null) {
 				System.out.println("SKU inválido, favor digitar um novo SKU.");
 			}			
@@ -33,7 +33,7 @@ public class Delete {
 		String decision = scanner.nextLine();
 		if (decision.equals("s") || decision.equals("S")) {
 			System.out.println("Produto: " + deleteProduct.getName() + "\nRemovido com sucesso!");			
-			productDAO.delete(skuScanner);
+			productDAO.erase(skuScanner);
 		}
 		else {
 			System.out.println("Voltando ao menu anterior..");

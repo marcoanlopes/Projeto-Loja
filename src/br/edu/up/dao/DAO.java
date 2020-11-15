@@ -5,12 +5,11 @@ import java.util.List;
 
 public interface DAO<T> {
 	
-	T create(T entity);
-	T update(T entity);
-	T getById(Integer id);
-	List<T> getAll();
-	void delete(Integer id);
-	
-	Connection getConnection();
+	T save(T entidade);
+	T updateDAO(T entidade);
+	T findById(Integer id);
+	List<T> list();
+	void erase(Integer id);
+//	Connection getConnection();
 	
 }

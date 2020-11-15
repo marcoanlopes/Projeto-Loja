@@ -11,98 +11,109 @@ import br.edu.up.dominio.Product;
 
 public class Update {
 
-	public void updateProduct() {
+	public void updateProduct(List<Product> productList) {
 
-		Scanner scanner = new Scanner(System.in);
-		Scanner repeatScanner = new Scanner(System.in);
-		Product editProduct = null;
-		ProductDAO productDAO = new ProductDAO();
+		Scanner leitor = new Scanner(System.in);
+		Scanner leitorRepetir = new Scanner(System.in);
 
-		do {
-			System.out.println("Digite o SKU para editar: ");
-			int editProductSku = scanner.nextInt();
-
-			editProduct = productDAO.getById(editProductSku);
-			if (editProduct == null) {
-				System.out.println("SKU inválido, favor digitar um novo SKU.");
-			}
-		}while(editProduct != null);
-
-		int option;
+		System.out.println("Digite o SKU para editar: ");
+		int editProduct = leitor.nextInt();
+		int editValor;
 		double editPrice;
 		String editText;
 		int editQuantity;
-		String continuar;
+		String continuar = "n";
+		for (Product product : productList) {
+			do {
+				if (product.getSku() == editProduct) {
+					System.out.println("\nProduto encontrado: " + product.getName() + "\n");
+					System.out.println("Digite a opção desejada:");
+					System.out.println("1- Editar o nome: ");
+					System.out.println("2- Editar o valor de compra: ");
+					System.out.println("3- Editar o valor de venda: ");
+					System.out.println("4- Editar a descrição: ");
+					System.out.println("5- Editar a quantidade: ");
+					editValor = leitor.nextInt();
 
-		do {
+					switch (editValor) {
+					case 1: {
+						for (int i = productList.size() - 1; i >= 0; i--) {
+							if (editProduct == productList.get(i).getSku()) {
+								System.out.println("Digite o nome desejado para o produto: ");
+								leitor.nextLine();
+								editText = leitor.nextLine();
+								product.setName(editText);
 
-			System.out.println("\nProduto encontrado: " + editProduct.getName() + "\n");
-			System.out.println("Digite a opção desejada:");
-			System.out.println("1- Editar o nome: ");
-			System.out.println("2- Editar o valor de compra: ");
-			System.out.println("3- Editar o valor de venda: ");
-			System.out.println("4- Editar a descrição: ");
-			System.out.println("5- Editar a quantidade: ");
-			option = scanner.nextInt();
+								System.out.println("Nome alterado com sucesso!");
+							}
+						}
+						break;
+					}
 
-			switch (option) {
-			case 1: {
+					case 2: {
+						for (int i = productList.size() - 1; i >= 0; i--) {
+							if (editProduct == productList.get(i).getSku()) {
+								System.out.println("Digite o valor de compra para o produto: ");
+//								leitor.nextLine();
+								editPrice = leitor.nextDouble();
+								product.setPurchasePrice(editPrice);
+								System.out.println("Valor de compra alterado com sucesso!");
+							}
+						}
+						break;
+					}
+					case 3: {
+						for (int i = productList.size() - 1; i >= 0; i--) {
+							if (editProduct == productList.get(i).getSku()) {
+								System.out.println("Digite o valor de venda para o produto: ");
+//								leitor.nextLine();
+								editPrice = leitor.nextDouble();
+								product.setSellingPrice(editPrice);
+								System.out.println("Valor de venda alterado com sucesso!");
+							}
+						}
+						break;
+					}
+					case 4: {
+						for (int i = productList.size() - 1; i >= 0; i--) {
+							if (editProduct == productList.get(i).getSku()) {
+								System.out.println("Digite a nova descrição do produto: ");
+								leitor.nextLine();
+								editText = leitor.nextLine();
+								product.setDescription(editText);
+								System.out.println("Descrição alterada com sucesso!");
+							}
+						}
+						break;
+					}
+					case 5: {
+						for (int i = productList.size() - 1; i >= 0; i--) {
+							if (editProduct == productList.get(i).getSku()) {
+								System.out.println("Digite a quantidade de produtos: ");
+//								leitor.nextLine();
+								editQuantity = leitor.nextInt();
+								product.setQuantity(editQuantity);
 
+								System.out.println("Quantidade de produtos alterada com sucesso!");
+							}
+						}
+						break;
+					}
 
-				System.out.println("Digite o nome desejado para o produto: ");
-				scanner.nextLine();
-				editText = scanner.nextLine();
-				editProduct.setName(editText);
-				System.out.println("Nome alterado com sucesso!");
+					default:
+						System.out.println("Não foi digitado uma opção valida, tente novamente");
+					}
 
-				break;
-			}
+					ProductDAO productDAO = new ProductDAO();
+					Product productEdit = new Product(product.getSku(), product.getName(), product.getDescription(),
+							product.getPurchasePrice(), product.getSellingPrice(), product.getQuantity());
+					productDAO.updateDAO(productEdit);
+					System.out.println("Deseja realizar outra alteração? (s/n)");
+					continuar = leitorRepetir.nextLine();
+				}
 
-			case 2: {
-				System.out.println("Digite o valor de compra para o produto: ");
-				//							scanner.nextLine();
-				editPrice = scanner.nextDouble();
-				editProduct.setPurchasePrice(editPrice);
-				System.out.println("Valor de compra alterado com sucesso!");
-				break;
-			}
-			case 3: {
-				System.out.println("Digite o valor de venda para o produto: ");
-				//							scanner.nextLine();
-				editPrice = scanner.nextDouble();
-				editProduct.setSellingPrice(editPrice);
-				System.out.println("Valor de venda alterado com sucesso!");
-				break;
-			}
-			case 4: {
-				System.out.println("Digite a nova descrição do produto: ");
-				scanner.nextLine();
-				editText = scanner.nextLine();
-				editProduct.setDescription(editText);
-				System.out.println("Descrição alterada com sucesso!");
-				break;
-			}
-			case 5: {
-				System.out.println("Digite a quantidade de produtos: ");
-				//						scanner.nextLine();
-				editQuantity = scanner.nextInt();
-				editProduct.setQuantity(editQuantity);
-				System.out.println("Quantidade de produtos alterada com sucesso!");
-				break;
-			}
+			} while (continuar.equals("s"));
 
-			default:
-				System.out.println("Não foi digitado uma opção valida, tente novamente");
-			}
-
-			System.out.println("Deseja realizar outra alteração? (s/n)");
-
-			continuar = repeatScanner.nextLine();
-		} while (continuar.equals("s"));
-
-		productDAO.update(editProduct);
-
-
-
+		}
 	}
 }

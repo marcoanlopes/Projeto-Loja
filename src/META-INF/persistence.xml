@@ -12,7 +12,7 @@
 		<properties>
 		
 			<property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:d:\\Eclipse\\DB_loja\\DB_loja"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:sqlite:D:\\Eclipse\\Workspace\\DB\\projetoloja.db"/>
 		
 		    <property name="hibernate.hbm2ddl.auto" value="create"/>
 			<property name="hibernate.show_sql" value="true"/>
