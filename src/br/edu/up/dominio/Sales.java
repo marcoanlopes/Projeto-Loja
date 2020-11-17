@@ -19,29 +19,23 @@ import br.edu.up.dao.SaleDAO;
 
 @Entity
 @Table(name = "sales")
-@TableGenerator(
-		name = "sale_generator",
-		table = "sqlite_sequence",
-		pkColumnName = "name",
-		valueColumnName = "seq",
-		pkColumnValue = "sales",
-		initialValue = 1,
-		allocationSize = 1
-		)
+@TableGenerator(name = "sale_generator", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "sales", initialValue = 1, allocationSize = 1)
 
 public class Sales {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="sale_generator")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "sale_generator")
 	private int id;
 	private int saleId;
 	private int productSKU;
 	private int productQuantity;
 	private double productTotalSale;
-	
+	private int customerId;
+
 	public Sales() {
-		
+
 	}
+
 //	public Sales(int id, int orderId, int productSKU, int productQuantity, double productTotalSale) {
 //		this.id = id;
 //		this.saleId = saleId;
@@ -50,17 +44,19 @@ public class Sales {
 //		this.productTotalSale = productTotalSale;
 //		
 //	}
-	public Sales(int salesId, int productSKU, int productQuantity, double productTotalSale) {
+	public Sales(int salesId, int productSKU, int productQuantity, double productTotalSale, int customerId) {
 		this.saleId = salesId;
 		this.productSKU = productSKU;
 		this.productQuantity = productQuantity;
 		this.productTotalSale = productTotalSale;
-		
+		this.customerId = customerId;
+
 	}
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -96,15 +92,19 @@ public class Sales {
 	public void setProductTotalSale(double productTotalSale) {
 		this.productTotalSale = productTotalSale;
 	}
-	
+
+	public int getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
 //	@Override
 //	public String toString() {
 //		
 //		 + productSKU + productQuantity + productTotalSale;
 //	}
-
-	
-	
-
 
 }

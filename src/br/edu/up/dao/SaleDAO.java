@@ -92,9 +92,16 @@ public class SaleDAO extends GenericDAO<Sales> {
 		Connection con;
 		try {
 			con = Connect.getConnection();
-			String sql = "select \r\n" + "	s.saleId,\r\n" + "    p.name,\r\n" + "    s.productQuantity,\r\n"
-					+ "    s.productTotalSale\r\n" + "from \r\n" + "    sales as s\r\n"
-					+ "inner join products as p on s.productSKU = p.sku\r\n" + ";";
+			String sql = "select \r\n" + 
+					"    p.name,\r\n" + 
+					"    s.productQuantity,\r\n" + 
+					"    s.productTotalSale,\r\n" + 
+					"	s.customerId,\r\n" + 
+					"	s.saleId\r\n" + 
+					"from \r\n" + 
+					"    sales as s\r\n" + 
+					"inner join products as p on s.productSKU = p.sku\r\n" + 
+					"inner join customers as c on c.customerId = s.customerId;";
 			PreparedStatement executor = con.prepareStatement(sql);
 //			executor.setInt(1, saleId);
 			ResultSet result = executor.executeQuery();
@@ -103,6 +110,7 @@ public class SaleDAO extends GenericDAO<Sales> {
 				String productNameSale = result.getString("name");
 				int productQuantitySale = result.getInt("productQuantity");
 				double productTotalSale = result.getDouble("productTotalSale");
+				int customerId = result.getInt("customerId");
 				int saleId = result.getInt("saleId");
 				if (saleId == idAnterior) {
 					System.out.println("\t\tProduto: " + productNameSale + "\t\t Quantidade comprada: "
@@ -116,7 +124,7 @@ public class SaleDAO extends GenericDAO<Sales> {
 					if (idAnterior == 0) {
 
 						System.out.println("Id compra: " + saleId + "\tProduto: " + productNameSale
-								+ "\t Quantidade comprada: " + productQuantitySale + "\t Valor: R$" + productTotalSale);
+								+ "\t Quantidade comprada: " + productQuantitySale + "\t Valor: R$" + productTotalSale + "\t Cliente que comprou: " + customerId);
 						totalIdBuy = productTotalSale;
 						totalReport += productTotalSale;
 						idAnterior = saleId;
@@ -128,7 +136,7 @@ public class SaleDAO extends GenericDAO<Sales> {
 						totalIdBuy = 0;
 
 						System.out.println("Id compra: " + saleId + "\tProduto: " + productNameSale
-								+ "\t Quantidade comprada: " + productQuantitySale + "\t Valor: R$" + productTotalSale);
+								+ "\t Quantidade comprada: " + productQuantitySale + "\t Valor: R$" + productTotalSale + "\t Cliente que comprou: " + customerId);
 						totalIdBuy = productTotalSale;
 						totalReport += productTotalSale;
 						idAnterior = saleId;
@@ -137,7 +145,6 @@ public class SaleDAO extends GenericDAO<Sales> {
 
 			}
 			System.out.println("\t Total da compra: R$ " + totalIdBuy);
-
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("Total das vendas: R$" + totalReport + "\n");
 			con.close();

@@ -98,6 +98,7 @@ public class Create {
 				sale.setProductSKU(skuProduct);
 				sale.setProductQuantity(quantity);
 				sale.setProductTotalSale(salePrice);
+
 				saleDAO.save(sale);
 
 			} else {
@@ -108,19 +109,19 @@ public class Create {
 			scanner.nextLine();
 			decision = scanner.nextLine();
 		} while (decision.equals("s"));
-		
-//		System.out.println("Deseja vincular a compra a algum cliente? (s/n)");
-//		String option = scanner.nextLine();
-//		customerDAO.setCustomer();
-		
+
+		System.out.println("Deseja vincular a compra a algum cliente? (s/n)");
+		String option = scanner.nextLine();
+		if (option.equals("s")) {
+			customerDAO.setCustomer(salesId);
+		} 
 		System.out.println("Venda Realizada com sucesso!");
 
-		
 		saleDAO.getInvoice(salesId);
 		double totalSalePrice = saleDAO.getSalePrice(salesId);
-		
+
 		System.out.println("Valor total dessa venda:" + totalSalePrice);
 
 	}
-	
+
 }
