@@ -62,6 +62,7 @@ public abstract class GenericDAO<T> implements DAO<T> {
 		return entityManager.find(persistedClass, id);
 	}
 	
+	
 
 
 }

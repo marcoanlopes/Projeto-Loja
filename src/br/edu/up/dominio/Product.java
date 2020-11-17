@@ -1,7 +1,7 @@
 package br.edu.up.dominio;
 
-import java.util.ArrayList;
-import java.util.List;
+//import java.util.ArrayList;
+//import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,7 +58,16 @@ public class Product {
 		this.name = name;
 		this.quantity = quantity;
 	}
-
+	public Product(int sku, String name, int quantity) {
+		this.sku = sku;
+		this.name = name;
+		this.quantity = quantity;
+	}
+	
+	public Product(int sku, int quantity) {
+		this.sku = sku;
+		this.quantity = quantity;
+	}
 	public int getSku() {
 		return sku;
 	}
@@ -110,6 +119,6 @@ public class Product {
 	@Override
 	public String toString() {
 		return "SKU produto: " + sku + "\t Nome produto: " + name + "\tPreço pago: " + purchasePrice + "\tPreço venda: "
-				+ sellingPrice + "\tQuantidade estoque: " + quantity;
+				+ sellingPrice + "\tQuantidade estoque: " + quantity + "\tDescrição: " + description;
 	}
 }

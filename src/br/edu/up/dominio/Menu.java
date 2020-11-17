@@ -10,12 +10,20 @@ import br.edu.up.crud.Create;
 import br.edu.up.crud.Delete;
 import br.edu.up.crud.Read;
 import br.edu.up.crud.Update;
+import br.edu.up.dao.CustomerDAO;
+import br.edu.up.dao.ProductDAO;
+import br.edu.up.dao.SaleDAO;
 
 public class Menu {
 	static Create criar = new Create();
 	static Read listar = new Read();
 	static Update atualizar = new Update();
 	static Delete deletar = new Delete();
+	static ProductDAO productDAO = new ProductDAO();
+	static Sales sales = new Sales();
+	static CustomerDAO customerDAO = new CustomerDAO();
+	static SaleDAO saleDAO = new SaleDAO();
+
 //	static List<Product> productList = new ArrayList<>();
 
 //	public 
@@ -79,23 +87,23 @@ public class Menu {
 
 			switch (escolha) {
 			case 1: {
-				System.out.println("Opção de criar selecionada");
+				criar.createCustomer();
 				break;
 			}
 			case 2: {
-				System.out.println("Opção de listar selecionada");
+				listar.readCustomer();
 				break;
 			}
 			case 3: {
-				System.out.println("Opção de alterar selecionada");
+				atualizar.updateCustomer();
 				break;
 			}
 			case 4: {
-				System.out.println("Opção de deletar selecionada");
+				deletar.deleteCustomer();
 				break;
 			}
 			case 5: {
-				System.out.println("Opção de find selecionada");
+				customerDAO.findCustomerByName();
 				break;
 			}
 			case 0: {
@@ -121,43 +129,42 @@ public class Menu {
 		int escolha = -1;
 		while (escolha != 0) {
 			System.out.println("Digite a operação desejada com Produtos:");
-			System.out.println("1- Cadastrar (create)");
-			System.out.println("2- Listar (read)");
-			System.out.println("3- Alterar (update)");
-			System.out.println("4- Deletar (delete)");
-			System.out.println("5- Procurar (find)");
-			System.out.println("6- ------------Estoque-----------");
+			System.out.println("1- Cadastrar (Create)");
+			System.out.println("2- Listar (Read)");
+			System.out.println("3- Alterar (Update)");
+			System.out.println("4- Deletar (Delete)");
+			System.out.println("5- Procurar (Find)");
+			System.out.println("6- Estoque (Stock)");
 			System.out.println("0- Voltar ao menu anterior");
 			escolha = leitor.nextInt();
 
 			switch (escolha) {
 			case 1: {		
-				criar.createProduct(productList);
+				criar.createProduct();
 				break;
 			}
 			case 2: {
-				listar.readProduct(productList);
+				listar.readProduct();
 				break;
 			}
 			case 3: {
-				atualizar.updateProduct(productList);
+				atualizar.updateProduct();
 				break;
 			}
 			case 4: {
-				deletar.deleteProduct(productList);
+				deletar.deleteProduct();
 				break;
 			}
 			case 5: {
-				System.out.println("Opção de find selecionada");
+				productDAO.findByName();
 				break;
 			}
 			case 6: {
-				System.out.println("opção de estoque selecionada");
+				productDAO.getStock();
 				break;
 			}
 
 			case 0: {
-
 				break;
 			}
 
@@ -178,16 +185,21 @@ public class Menu {
 			System.out.println("Digite a operação desejada com Vendas:");
 			System.out.println("1- Realizar venda");
 			System.out.println("2- Relatório");
+			System.out.println("3- Realizar Orçamento");
 			System.out.println("0- Voltar ao menu anterior");
 			escolha = leitor.nextInt();
 
 			switch (escolha) {
 			case 1: {
-				System.out.println("Opção de realizar venda selecionado");
+				criar.sellProduct();
 				break;
 			}
 			case 2: {
-				System.out.println("Opção de relatório selecionado");
+				saleDAO.salesReport();
+				break;
+			}
+			case 3: {
+				listar.getBudget();
 				break;
 			}
 			case 0: {

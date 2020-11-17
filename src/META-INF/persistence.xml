@@ -5,6 +5,7 @@
 		
 		<class>br.edu.up.dominio.Customer</class>
 		<class>br.edu.up.dominio.Product</class>
+		<class>br.edu.up.dominio.Sales</class>
 		
 		
 		
