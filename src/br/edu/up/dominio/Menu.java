@@ -28,7 +28,7 @@ public class Menu {
 
 //	public 
 //	public List <Customer> customerList = new ArrayList<>();
-	public static void mainMenu(List <Product> productList) {
+	public static void mainMenu() {
 		
 		Scanner leitor = new Scanner(System.in);
 		int escolha = -1;
@@ -48,7 +48,7 @@ public class Menu {
 				break;
 			}
 			case 2: {
-				productsMenu(productList);
+				productsMenu();
 				break;
 			}
 			case 3: {
@@ -120,7 +120,7 @@ public class Menu {
 
 	}
 
-	public static void productsMenu(List <Product> productList) {
+	public static void productsMenu() {
 //		List <Product> productList = new ArrayList<>();
 		
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");

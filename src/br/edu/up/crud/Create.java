@@ -98,7 +98,7 @@ public class Create {
 				sale.setProductSKU(skuProduct);
 				sale.setProductQuantity(quantity);
 				sale.setProductTotalSale(salePrice);
-
+				sale.setCustomerId(0);
 				saleDAO.save(sale);
 
 			} else {
@@ -115,6 +115,7 @@ public class Create {
 		if (option.equals("s")) {
 			customerDAO.setCustomer(salesId);
 		} 
+		
 		System.out.println("Venda Realizada com sucesso!");
 
 		saleDAO.getInvoice(salesId);

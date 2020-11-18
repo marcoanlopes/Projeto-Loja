@@ -65,7 +65,7 @@ public class CustomerDAO extends GenericDAO<Customer> {
 
 	public void setCustomer(int salesId) {
 		Scanner scanner = new Scanner(System.in);
-//		CustomerDAO customerDAO = new CustomerDAO();
+		CustomerDAO customerDAO = new CustomerDAO();
 		findCustomerByName();
 		System.out.println("Digite o id do cliente para vincular: ");
 		

@@ -10,10 +10,10 @@ import br.edu.up.dominio.Product;
 public class Programa {
 
 	public static void main(String[] args) {
-		ProductDAO produtodao = new ProductDAO();
-		List<Product> productList = produtodao.list();
+//		ProductDAO produtodao = new ProductDAO();
+//		List<Product> productList = produtodao.list();
 
-		Menu.mainMenu(productList);
+		Menu.mainMenu();
 
 		System.out.println("Programa Finalizado");
 	}
